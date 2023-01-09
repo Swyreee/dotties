@@ -1,4 +1,7 @@
 .config/btop/error.log
 .config/vis/vis.log
 .config/polybar/.curplayer.log
-.config/dunst/dunstrc
+.config/eww/hosf/images/
+.config/systemd/user/default.target.wants
+.config/systemd/user/graphical.target.wants
+.config/systemd/user/multi-user.target.wants

@@ -20,10 +20,26 @@ super + Escape
 
 # https://github.com/flameshot-org/flameshot/issues/784#issuecomment-918382722
 Print
-    $HOME/dotties/flameshot.sh
+    flameshot full --clipboard
 
 super + shift + s
-    $HOME/dotties/flameshot.sh
+    flameshot gui --clipboard
+
+# Set static wallpaper
+ctrl + shift + a
+    killall komorebi; \
+    feh --no-fehbg --bg-fill $HOME/dotties/assets/desktop.png && \
+    echo "S" > $HOME/.config/bspwm/wallpaper_mode.txt; \
+    notify-send "System" "Using static wallpaper" --expire-time=1000 \ 
+        -i $HOME/dotties/assets/desktop.png;
+    
+# Set animated wallpaper
+ctrl + alt + a
+    killall komorebi; \
+    komorebi & > /dev/null; \
+    echo "A" > $HOME/.config/bspwm/wallpaper_mode.txt; \
+    notify-send "System" "Using animated wallpaper" --expire-time=1000 \ 
+        -i $HOME/dotties/assets/desktop.png;
 
 @XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle && \
@@ -31,10 +47,10 @@ super + shift + s
     notify-send "Audio" "Is Muted: $stat" --expire-time=500
 
 @XF86Audio{Raise,Lower}Volume
-    pactl set-sink-volume @DEFAULT_SINK@ {+,-}2% && \
-    stat=`pactl get-sink-volume @DEFAULT_SINK@ | awk '\{printf substr($5,1,3)\}' | sed 's/%//g'` && \
-    notify-send "Volume $stat%" --expire-time=1000 -u low -h int:value:$stat -h string:synchronous:volumectrl
-
+    stat=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '\{printf substr($5,1,3)\}' | sed 's/%//g');\
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}1%; \
+    notify-send "System" "Volume set at $((stat {+,-} 1))%" --expire-time=500 -u low -h int:value:$stat -h string:synchronous:volumectrl;
+    
 @XF86AudioPlay
     playerctl play-pause && notify-send "Playback" "Toggled playback status" --expire-time=500
 
@@ -45,10 +61,13 @@ super + shift + s
     playerctl {previous,next} && notify-send "Playback" "Switching track" --expire-time=500
 
 @XF86MonBrightness{Down,Up}
-    now=$(brightnessctl get); \
-    now=$(( now {-,+} 1200 )); \
+    max=$( cat /sys/class/backlight/intel_backlight/max_brightness ); \
+    unit=$(( $max / 100 )); \
+    now=$( cat /sys/class/backlight/intel_backlight/brightness ); \
+    now=$(( $now {-,+} $unit )); \
     now=$(( $now >= 0 ? $now : 0 )); \
-    now=$(( $now <= 120000 ? $now : 120000 )); \
+    now=$(( $now <= $unit * 100 ? $now : $unit * 100 )); \
+    per=$(( $now / $unit )); \
     brightnessctl s $now --quiet && \
     notify-send "Brightness $per%" --expire-time=500 -u low -h int:value:$per -h string:synchronous:brightnesscrtl;
     

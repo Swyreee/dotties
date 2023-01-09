@@ -1,0 +1,40 @@
+[global]
+    width = 400
+
+    origin = top-right
+    offset = 8x60
+    corner_radius = 4
+    separator_height = 8
+    padding = 24
+    horizontal_padding = 24
+
+    frame_color = "#F0C674"
+    frame_width = 3
+
+    idle_threshold = 120
+
+    font = Jetbrains Mono
+    alignment = center
+    word_wrap = yes
+
+    format = "<b>%s</b>\n%b"
+    icon_theme = "Papirus-Light"
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+    show_indicators = yes
+    enable_recursive_icon_lookup = true
+    icon_path = /usr/share/icons/Papirus/32x32/status/:/usr/share/icons/Papirus/32x32/devices/
+    markup = full
+
+[urgency_low]
+    background = "#FFFFFF"
+    foreground = "#000000"
+
+[urgency_normal]
+    background = "#FFFFFF"
+    foreground = "#000000"
+
+[urgency_critical]
+    background = "#FFFFFF"
+    foreground = "#000000"

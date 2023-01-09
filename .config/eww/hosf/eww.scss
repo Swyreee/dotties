@@ -1,0 +1,165 @@
+* {
+    all: unset;
+    font-family: "Nova Mono";
+    font-weight: 800;
+}
+
+.music_box_popup {
+    border-bottom: none;
+    background-color: #ffffff;
+    border: solid 2px #f0c674;
+    border-radius: 10 10 0 0;
+}
+
+.media_art {
+    margin-left: 14px;
+    margin-right: 3px;
+}
+
+.media_art_popup {
+    border: solid 5px #282a2e;
+    border-radius: 5px;
+    min-height: 130px;
+    min-width: 130px;
+    background-color: #282a2e;
+    margin: 15 0 15 15;
+}
+
+.media_data {
+    margin-left: 10px;
+    margin-right: 17px;
+}
+
+.media_data_popup {
+}
+
+.media_title {
+    font-size: 15px;
+    color: #282a2e;
+    margin-top: -100px;
+    margin-bottom: -70px;
+}
+
+.media_title_popup {
+    font-size: 18px;
+    margin: 0 15 -30 10;
+    color: #282a2e;
+}
+
+.media_artist_popup {
+    font-size: 14px;
+    margin: 0 15 0 10;
+    color: #282a2e;
+}
+
+.media_buttons {
+    font-size: 20px;
+    margin-bottom: 2px;
+    min-height: 22px;
+}
+.playpause_popup {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #282a2e;
+}
+.move_popup {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #ffc994;
+}
+.nextprev_popup {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #ff6156;
+}
+
+.toggle_button {
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #ffffff;
+}
+
+.bar_normal_popup scale trough highlight {
+    all: unset;
+    background-color: #E94546;
+    border-radius: 15px;
+}
+
+.bar_normal_popup scale trough {
+    all: unset;
+    background-color: rgba(255,201,148, 0.4);
+    min-height: 15px;
+    margin: 0 15 15 15;
+    border-radius: 15px;
+    border: solid 5px #282a2e;
+}
+.bar_highlighted_popup scale trough highlight {
+    all: unset;
+    background-color: #027A8D;
+    border-radius: 15px;
+}
+.bar_highlighted_popup scale trough {
+    all: unset;
+    background-color: rgba(255,201,148, 0.4);
+    min-height: 15px;
+    margin: 0 15 15 15;
+    border-radius: 15px;
+    border: solid 5px #282a2e;
+}
+.bar_normal scale trough highlight {
+    all: unset;
+    background-color: #027A8D;
+    border-radius: 10px;
+}
+.bar_normal scale trough {
+    all: unset;
+    background-color: rgba(255,201,148, 0.4);
+    min-width: 173px;
+    min-height: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.bar_highlighted scale trough highlight {
+    all: unset;
+    background-color: #019fb8;
+    border-radius: 10px;
+}
+.bar_highlighted scale trough {
+    all: unset;
+    background-color: #ffc994;
+    min-width: 173px;
+    min-height: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.cal {
+    border-top: none;
+    font-size: 16px;
+    background-color: rgba(255,255,255,70%);
+    color: #bda509;
+    border: 2px solid #f0c674;
+    border-radius: 0 0 20 20;
+    padding: 10px;
+}
+
+calendar:selected {
+    color: #ffffff;
+    background-color: rgba(255,0,0,60%);
+    border-radius: 10px;
+}
+
+calendar.highlight {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+calendar:indeterminate {
+    color: #8C8C8C;
+}

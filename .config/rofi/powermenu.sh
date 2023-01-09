@@ -25,23 +25,23 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$lock\n$suspend\n$logout\n$hibernate\n$reboot\n$shutdown" | rofi_cmd
+	echo -e "$suspend\n$logout\n$hibernate\n$reboot\n$shutdown" | rofi_cmd
 }
 
 # Execute Command
 run_cmd() {
 		if [[ $1 == '--shutdown' ]]; then
-			systemctl poweroff
+			notify-send "System" "Shutting down" --expire-time=500 && systemctl poweroff
 		elif [[ $1 == '--reboot' ]]; then
-			systemctl reboot
+			notify-send "System" "Preparing to reboot" --expire-time=500 && systemctl reboot
 		elif [[ $1 == '--hibernate' ]]; then
-			systemctl hibernate
+			notify-send "System" "Entering hibernate" --expire-time=500 && systemctl hibernate
 		elif [[ $1 == '--suspend' ]]; then
-			playerctl pause
+            playerctl pause
 			amixer set Master mute
-			systemctl suspend
+			notify-send "System" "Preparing to hibernate" --expire-time=500 && systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-			bspc quit
+			notify-send "System" "Logging out" --expire-time=500 && bspc quit
 		fi
 }
 

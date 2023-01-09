@@ -1,0 +1,149 @@
+(defvar eww "eww -c $HOME/.config/eww/hosf")
+(defvar cover "local_music.png")
+(defvar media_bar_class "bar_normal")
+(defvar media_bar_class_popup "bar_normal_popup")
+
+(defvar media_status "")
+(defvar artist "No artist")
+(defvar artist_parsed "No artist") 
+(defvar title "No title") 
+(defvar title_parsed "No title") 
+(defvar length 100)
+(defvar position 0)
+
+(defvar day 0)
+(defvar month 0)
+(defvar year 0)
+
+(defwindow mpris
+  :geometry
+    (geometry
+      :x "22px"
+      :y "819px"
+      :width "415px"
+      :height "200px")
+    :stacking "fg"
+    :windowtype "dock"
+    :wm-ignore "false"
+    (box
+      :orientation "v"
+      :valign "fill"
+      :halign "fill"
+      :space-evenly "false"
+      :class "music_box_popup"
+      :hexpand "false"
+      (box
+        :orientation "h"
+        :valign "fill"
+        :halign "fill"
+        :space-evenly "false"
+        :hexpand "false"
+        (box
+          :valign "center"
+          :halign "start"
+          :hexpand "false"
+          (image
+            :halign "start"
+            :class "media_art_popup"
+            :tooltip "${title} by ${artist}"
+            :path cover
+            :image-height 130
+            :image-width 130))
+        (box
+          :valign "center"
+          :halign "fill"
+          :orientation "v"
+          :class "media_data_popup"
+          :spacing 20
+          :hexpand "false"
+          (label
+            :class "media_title_popup"
+            :markup title_parsed
+            :halign "center")
+          (label
+            :class "media_artist_popup"
+            :markup artist_parsed
+            :halign "center")
+          (box
+            :orientation "h"
+            :halign "fill"
+            :valign "fill"
+            :class "media_buttons_box_popup"
+            (eventbox
+              :cursor "pointer"
+              (button
+                :onclick "scripts/media_control.sh --prev"
+                :class "nextprev_popup"
+                :tooltip "Previous"
+                ""))
+            (eventbox
+              :cursor "pointer"
+              (button
+                :onclick "scripts/media_control.sh --move -5"
+                :class "move_popup"
+                :tooltip "-5 seconds"
+                ""))
+            (eventbox
+              :cursor "pointer"
+              (button
+                :onclick "scripts/media_control.sh --toggle"
+                :class "playpause_popup"
+                :tooltip "Play/Pause"
+                media_status))
+            (eventbox
+              :cursor "pointer"
+              (button
+                :onclick "scripts/media_control.sh --move +5"
+                :class "move_popup"
+                :tooltip "+5 seconds"
+                ""))
+            (eventbox
+              :cursor "pointer"
+              (button
+                :onclick "scripts/media_control.sh --next"
+                :class "nextprev_popup"
+                :tooltip "Next"
+                ""))      
+                )))
+      (eventbox
+        :cursor "pointer"
+        :onhover "${eww} update media_bar_class_popup=\"bar_highlighted_popup\""
+        :onhoverlost "${eww} update media_bar_class_popup=\"bar_normal_popup\""
+        (box
+          :orienttion "h"
+          :valign "fill"
+          :halign "fill"
+          :class media_bar_class_popup
+          (scale
+            :min 0
+            :max length
+            :value position
+            :orientation "h"
+            :onchange "scripts/media_control.sh --seek {}"
+          )))
+      ))
+
+(defwindow calendar
+  :geometry 
+    (geometry 
+      :x "730px" 
+      :y "47px"
+      :width "415px"
+      :height "100px")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore "false"
+  (box
+    :class "cal"
+    :orientation "h"
+    :valign "fill"
+    :halign "fill"
+    (calendar
+      :day day
+      :month month
+      :year year
+      :show-details "true"
+      :show-heading "true"
+      :show-day-names "true")
+  )
+)
